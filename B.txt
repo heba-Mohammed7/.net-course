@@ -1,0 +1,19 @@
+class Program
+{
+    static void Main()
+    {
+        string[] inputs = Console.ReadLine().Split();
+        
+        int intnum = int.Parse(inputs[0]);
+        long longnum = long.Parse(inputs[1]);
+        char charnum = char.Parse(inputs[2]);
+        float floatnum = float.Parse(inputs[3]);
+        double doublenum = double.Parse(inputs[4]);
+
+        Console.WriteLine(intnum);
+        Console.WriteLine(longnum);
+        Console.WriteLine(charnum);
+        Console.WriteLine(floatnum);
+        Console.WriteLine(doublenum);
+    }
+}
