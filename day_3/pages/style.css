@@ -1,244 +1,24 @@
 /*------------------------------------------ page 1 -------------------------------------------------*/
-*{
-    margin-top: 20px;
-}
-.p_p1{
+p{
     font-size: 20px;
     color: white;
     padding: 10px;
     font-family: 'roboto';
 }
 
-.div_p1{
+div{
     background-color: blueviolet;
     margin: 20px;
     height: 50px;
 }
+
 #div_2{
     opacity: .5;
 }
+
 #div_3{
     opacity: .1;
 }
 
 
-/*------------------------------------------ page 2 -------------------------------------------------*/
 
-#shape1{
-    background-color: gainsboro;
-    background-image: url("shape.png");
-    background-repeat: no-repeat;
-    width: 400px;
-    height: 400px;
-    display: inline-block;
-    margin: 0px 50px;
-    font-family: 'roboto';
-    color: white;
-}
-
-#shape2{
-    background-color: gainsboro;
-    background-image: url("shape.png");
-    background-repeat: repeat-y;
-    width: 400px;
-    height: 400px;
-    display: inline-block;
-    margin: 0px 50px;
-    font-family: 'roboto';
-    color: white;
-}
-#shape3{
-    background-color: gainsboro;
-    background-image: url("shape.png");
-    background-repeat: repeat-x;
-    width: 400px;
-    height: 400px;
-    display: inline-block;
-    margin: 50px;
-    font-family: 'roboto';
-    color: white;
-}
-
-#shape4{
-    background-color: gainsboro;
-    background-image: url("shape.png");
-    background-repeat: repeat;
-    width: 400px;
-    height: 400px;
-    display: inline-block;
-    margin: 50px;
-    font-family: 'roboto';
-    color: white;
-}
-
-
-
-/*------------------------------------------ page 3 -------------------------------------------------*/
-.div_p3{
-    background-color: gainsboro;
-    outline: 5px solid black;
-    display: inline;
-    margin: 30px;
-    padding: 10px;
-    font-family: 'roboto';
-}
-
-#shape_1{
-    border: 5px solid red;
-}
-
-#shape_2{
-    border: 5px solid;
-    border-color: blue green;
-}
-#shape_3{
-    border: 5px dashed;
-    border-color: red green blue yellow;
-}
-
-/*------------------------------------------ page 4 -------------------------------------------------*/
-.div_p4{
-    background-color: gainsboro;
-    outline: 10px solid gainsboro;
-    font-family: 'roboto';
-    margin: 30px;
-    padding: 10px;
-}
-
-#div1_p4{
-    border-left: 5px solid #D91656;
-    margin-bottom: 100px;
-}
-
-#div2_p4{
-    border-left: 5px solid #00879E;
-}
-
-/*------------------------------------------ page 5 -------------------------------------------------*/
-
-.p_p5{
-    font-family: 'Noto Sans Warang Citi';
-    width: 200px;
-    height: 30px;
-    text-align: center;
-}
-#p1_p5{
-    font-style: italic;
-    font-size: large;
-    font-weight: lighter;
-}
-
-#p2_p5{
-    font-size: large;
-    font-weight: bold;
-}
-#p3_p5{
-    font-size: small;
-    font-weight: bold;
-}
-
-/*------------------------------------------ page 6 -------------------------------------------------*/
-.div_p6{
-    text-align: center;
-    background-color: gainsboro;
-    height: 320px;
-    
-}
-
-.r1_p6 p{
-    background-color: #bdbdbd;
-    float: left;
-    width: calc(100% - 20px);
-    margin: 10px;
-    padding: 20px 0px;
-}
-
-.r2_p6 p{
-    background-color: #bdbdbd;
-    display: inline;
-    float: left;
-    width: calc(100%/3 - 20px);
-    margin: 10px;
-    padding: 20px 0px;
-}
-.r3_p6 p{
-    background-color: #bdbdbd;
-    display: inline;
-    float: left;
-    width: calc(100%/2 - 20px);
-    margin: 10px;
-    padding: 20px 0px;
-}
-.r4_p6 p{
-    background-color: #bdbdbd;
-    display: inline;
-    float: left;
-    width: calc(100%/4 - 20px);
-    margin: 10px;
-    padding: 20px 0px;
-}
-
-/*------------------------------------------ page 7 -------------------------------------------------*/
-table{
-    font-family: 'roboto';
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px;
-    text-align: center;
-}
-th{
-    font-weight: bold;
-    color: white;
-    background-color: #242424;
-    padding: 10px;
-    border: 1px solid gainsboro;
-}
-img{
-    width: 120px;
-    height: 120px;
-}
-td{
-    background-color: #d1d1d1;
-    border: 1px solid gainsboro;
-}
-#view{
-    color: white;
-    background-color: #7777ff;
-    padding: 20px;
-    border: none;
-}
-
-#delete{
-    color: white;
-    background-color: #d80000;
-    padding: 20px;  
-    border: none; 
-}
-
-/*------------------------------------------ page 8 -------------------------------------------------*/
-.div_p8 {
-    display: flex;
-    align-items: center;
-    font-family: 'roboto';
-}
-
-.num_div {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-    text-align: center;
-    position: absolute;
-    z-index: 1;
-}
-
-.text_div {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 15px;
-    background-color: #ddd;
-    margin-left: 20px;
-    padding-left: 20px;
-    position: relative;
-    z-index: -1;
-}
