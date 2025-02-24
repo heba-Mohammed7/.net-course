@@ -1,0 +1,14 @@
+class Program
+{
+    static void Main()
+    {
+        char inputs = char.Parse(Console.ReadLine());
+        
+        if (inputs >= 65 && inputs <= 90) {
+    		Console.WriteLine((char)(inputs + 32));
+    	}
+    	else if (inputs >= 97 && inputs <= 122)
+    		Console.WriteLine((char)(inputs - 32));
+
+    }
+}

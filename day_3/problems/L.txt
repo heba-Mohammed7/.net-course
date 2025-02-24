@@ -1,0 +1,16 @@
+class Program
+{
+    static void Main()
+    {
+        string[] fPerson = Console.ReadLine().Split();
+        string[] sPerson = Console.ReadLine().Split();
+        
+        if(fPerson[1] == sPerson[1]){
+            Console.WriteLine("ARE Brothers");
+        }
+        else{
+            Console.WriteLine("NOT");
+        }
+
+    }
+}

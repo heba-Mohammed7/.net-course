@@ -1,0 +1,17 @@
+class Program
+{
+    static void Main()
+    {
+        char inputs = char.Parse(Console.ReadLine());
+        
+        if (inputs >= 48 && inputs <= 57)
+    		Console.WriteLine("IS DIGIT");
+    	else if (inputs >= 65 && inputs <= 90) {
+    		Console.WriteLine("ALPHA\nIS CAPITAL");
+    	}
+    	else if (inputs >= 97 && inputs <= 122)
+    		Console.WriteLine("ALPHA\nIS SMALL");
+        
+
+    }
+}
