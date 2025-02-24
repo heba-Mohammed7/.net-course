@@ -1,0 +1,15 @@
+class Program
+{
+    static void Main()
+    {
+        string[] inputs = Console.ReadLine().Split();
+        
+        float a = float.Parse(inputs[0]);
+        float b = float.Parse(inputs[1]);
+
+
+        Console.WriteLine($"floor {a} / {b} = {Math.Floor(a / b)}");
+        Console.WriteLine($"ceil {a} / {b} = {Math.Ceiling(a / b)}");
+        Console.WriteLine($"round {a} / {b} = {Math.Round(a / b, MidpointRounding.AwayFromZero)}");
+    }
+}
