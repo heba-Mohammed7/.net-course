@@ -1,0 +1,27 @@
+class Program
+{
+    static void Main()
+    {
+        string inputs = Console.ReadLine();
+        
+        if (inputs.Contains('+')) {
+            string[] nums = inputs.Split('+');
+    		Console.WriteLine(int.Parse(nums[0])+int.Parse(nums[1]));
+    	}
+    	else if(inputs.Contains('-')) {
+            string[] nums = inputs.Split('-');
+    		Console.WriteLine(int.Parse(nums[0])-int.Parse(nums[1]));
+    	}
+    	else if(inputs.Contains('*')) {
+            string[] nums = inputs.Split('*');
+    		Console.WriteLine(int.Parse(nums[0])*int.Parse(nums[1]));
+    	}
+    	else if(inputs.Contains('/')) {
+            string[] nums = inputs.Split('/');
+    		Console.WriteLine(int.Parse(nums[0])/int.Parse(nums[1]));
+    	}
+    	
+    
+
+    }
+}
