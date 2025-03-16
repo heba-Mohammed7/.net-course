@@ -1,0 +1,15 @@
+class Program
+{
+    static void Main()
+    {
+        float num = float.Parse(Console.ReadLine());
+        int numInt=(int)num;
+        if(num == numInt){
+            Console.WriteLine($"int {numInt}");
+        }
+        else{
+            Console.WriteLine($"float {numInt} {num-numInt:F3}");
+        }
+    
+    }
+}

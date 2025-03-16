@@ -1,0 +1,21 @@
+using System;
+class Program
+{
+    static void Main()
+    {
+        string[] inputs = Console.ReadLine().Split();
+        int[] arr = Array.ConvertAll(inputs, int.Parse);
+        
+        int[] arrSorted =arr.ToArray();
+        Array.Sort(arrSorted);
+        foreach (int n in arrSorted)
+        {
+            Console.Write($"{n}\n");
+        }
+        Console.Write("\n");
+        foreach (int n in arr)
+        {
+            Console.Write($"{n}\n");
+        }
+    }
+}
