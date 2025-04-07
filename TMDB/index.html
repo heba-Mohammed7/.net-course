@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <title>Movies Website</title>
+</head>
+
+<body>
+  <div id="big-div">
+    <div id="navbar" class="container">
+      <div id="logo">
+        <span id="span-new">New</span>
+        <span id="span-movie">Movie</span>
+      </div>
+      <div id="menu-items-laptop">
+          <ul>
+            <li><a href="">New Movie</a></li>
+            <li><a href="">Genre</a></li>
+            <li><a href="">Country</a></li>
+            <li><a href="">Movie</a></li>
+            <li><a href="">TV Series</a></li>
+            <li>|</li>
+            <li><i  id="search-icon" class="fas fa-search"></i>
+              <input type="text" id="search-input" placeholder="Search" />
+            </li>
+          </ul>
+        
+      </div>
+      <div id="menu-items-mobile">
+        <div id="big-mobile">
+            <div id="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div id="menu-mob">
+              <a href="">New Movie</a>
+              <a href="">Genre</a>
+              <a href="">Country</a>
+              <a href="">Movie</a>
+              <a href="">TV Series</a>
+              
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div id="movie-Details" class="container">
+      <div id="content">
+        <p id="movie-title" ></p>
+        <span id="IMDB">IMDB</span>
+        <span id="vote_average" class="span-small"></span>
+        <span id="popularity" class="span-small"></span>
+        <span id="release_date" class="span-small"></span>
+
+        <p id="movie-description"></p>
+
+        <button id="btn-trailer">Watch Trailer</button>
+        <button id="btn-now">Watch Now</button>
+      </div>
+    </div>
+
+    <div id="navigation" class="container">
+      <button class="previous">&#8249;</button>
+      <button class="next">&#8250;</button>
+    </div>
+
+    <div id="movies-list" class="container scroll-list">
+    </div>
+  </div>
+
+
+
+  <script type="module" src="./dist/main.js"></script>
+
+</body>
+
+</html>
