@@ -34,6 +34,13 @@ export class MovieApp {
         if (this.allMovies.length > 0) {
             this.movieUI.showMoviesList(this.allMovies, this.movieIndex, (index) => this.onMovieClick(index));
             this.movieUI.showMovieDetails(this.allMovies[this.movieIndex]);
+            const scroll = document.querySelector('.scroll-list');
+            const posters = scroll.querySelectorAll('.poster');
+            const activePoster = posters[this.movieIndex];
+            if (scroll && activePoster) {
+                const scrollLeft = activePoster.offsetLeft - scroll.offsetWidth / 2 + activePoster.offsetWidth / 2;
+                scroll.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+            }
         }
     }
     onMovieClick(index) {

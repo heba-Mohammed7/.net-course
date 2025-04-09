@@ -1,7 +1,7 @@
 import { Movie } from './types.js';
 
 export class MovieUI {
-  private imageUrl = 'https://image.tmdb.org/t/p/w220_and_h330_face';
+  private imageUrl = 'https://image.tmdb.org/t/p/original';
   private movieTitle = document.getElementById('movie-title')!;
   private voteAverage = document.getElementById('vote_average')!;
   private popularity = document.getElementById('popularity')!;
@@ -12,6 +12,12 @@ export class MovieUI {
   showMoviesList(movies: Movie[], activeIndex: number, onClick: (index: number) => void) {
     this.moviesList.innerHTML = '';
     movies.forEach((movie, index) => {
+      const poster = document.createElement('div');
+      poster.className = 'poster';
+
+
+
+
       const img = document.createElement('img');
       img.src = `${this.imageUrl}${movie.poster_path}`;
       img.alt = movie.title;
@@ -19,7 +25,12 @@ export class MovieUI {
         img.classList.add('active');
       }
       img.onclick = () => onClick(index);
-      this.moviesList.appendChild(img);
+      //this.moviesList.appendChild(img);
+
+
+      poster.appendChild(img);
+      this.moviesList.appendChild(poster);
+      
     });
   }
 
@@ -32,8 +43,8 @@ export class MovieUI {
     if (movie.overview.length > 300) {
       const shortText = movie.overview.slice(0, 300);
       this.description.innerHTML = `
-        ${shortText}<span id="dots">...</span><span id="more" style="display:none;font-size: 1rem;">${movie.overview.slice(300)}</span>
-        <button id="toggle-btn" style="background:none; border:none; color:#F5C51C; cursor:pointer;">See More</button>
+        ${shortText}<span id="dots">...</span><span id="more" style="display:none;">${movie.overview.slice(300)}</span>
+        <button id="toggle-btn" style="background:none; border:none; color:#F5C51C; cursor:pointer; font-size: 1rem">See More</button>
       `;
       this.setupToggle();
     } else {

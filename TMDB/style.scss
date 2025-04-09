@@ -34,8 +34,8 @@ body{
 
 #logo{
     font-size: 2rem;
-    @media(min-width:640px){
-        font-size: 1.5rem;
+    @media(max-width:640px){
+        font-size: 1rem;
     }
 
     #span-new{
@@ -54,9 +54,9 @@ body{
     ul {
         margin: 0;
         padding: 0;
-        font-size: 1.5rem;
+        font-size: 1rem;
         @media(min-width:640px){
-            font-size: 1rem;
+            font-size: 1.5rem;
         }
         li {
             display: inline-block;
@@ -73,17 +73,17 @@ body{
                 &::before{
                     content: "";
                     height: 1px;
-                    width: 100%;
+                    width: 0%;
                     bottom: 0;
                     left: 0;
                     position: absolute;
-                    display: none;
                     background-color: #FFFFFF;
+                    transition: width .5s ease;
 
                 }
                 &:hover{
                     &::before{
-                        display: block;
+                        width: 100%;
                     }
                 }
     
@@ -99,16 +99,24 @@ body{
     height: 100%;
 }
 #search-input {
-    display: none;
-    padding: 5px 10px;
-    margin-left: 10px;
+    visibility: hidden;
     border: none;
     border-radius: 5px;
     outline: none;
+    transition: all .5s ease;
+    width: 0;
+    font-size: 1rem;
+    @media(min-width:640px){
+        font-size: 1.5rem;
+    }
   }
   
   #search-input.active {
     display: inline-block;
+    margin-left: 10px;
+    padding: 5px 10px;
+    width: 60%;
+    visibility: visible;
   }
 
 /* -------------------------------------------- End of Navber --------------------------------------------*/
@@ -126,20 +134,15 @@ body{
 
     @media (max-width:640px) {
         width: 100%;
-        #movie-description{
-            font-size: medium;
-            min-height:5vh;
-        }
+
     }
     @media (min-width: 640px) and (max-width: 1280px) {
-        width: 40%;
+        width: 45%;
         
     }
     @media(min-width:1280px){
         width: 50%;
-        #movie-description{
-            font-size: x-large;
-        }
+
     }
 
     span{
@@ -184,12 +187,20 @@ body{
 
     #btn-trailer, #btn-now{
         width: 40%;
-        height: 5vh;
+        height: 7vh;
         border-radius: 10px;
         font-size: 1rem;
+        
         @media (min-width:1280px){
             font-size: 1.5rem;
+
         }
+        @media (max-width:640px) {
+            width: 35%;
+    
+        }
+
+        
     }
     #btn-trailer{
         background-color: rgba(0, 0, 0, 0);
@@ -229,6 +240,9 @@ body{
 /* ----------------------------------------- start of navigation -----------------------------------------*/
 #navigation{
     margin-top: 7%;
+    @media(min-width: 1024px){
+        margin-top: 3%;
+    }
     button{
         text-decoration: none;
         color: #FFFFFF;
@@ -236,7 +250,7 @@ body{
         border: 1px solid #FFFFFF;
         background-color: rgba(0, 0, 0, 0);
         font-size: xxx-large;
-        font-weight: 100;
+        transition: all .5s ease;
     }
     .previous{
         margin-right: 20px;
@@ -252,33 +266,39 @@ body{
     overflow: scroll;
     scrollbar-width: none;
     margin-top: 3%;
-    gap: 5%;
+    gap: 5vw;
     align-items: flex-end;
-    padding: 3% 0;
+    padding: 4% 0;
     margin-bottom: 4%;
-
-
-        img {
-            display: block;
-            transition: transform 0.3s;
-            border-radius: 15px;
-            filter: brightness(0.5);
-            width: 15%;
-            border-radius: 15px;
-            @media (max-width:640px) {
-                width: 30%;
-            }
-            @media (min-width: 640px) and (max-width: 1024px) {
-                width: 20%;
-            }
-
-        }
-        
-    img.active {
-        transform: scale(1.2);
-        transform-origin: bottom center;
-        filter: brightness(1);
+    @media(min-width:1024px){
+        gap: 3vw;
     }
+    .poster{
+        flex: 0 0 auto;
+      img {
+        display: block;
+        transition: transform .5s ease, filter .5s ease;
+        border-radius: 15px;
+        filter: brightness(0.5);
+        width: 15vw;
+        border-radius: 15px;
+        
+        @media (max-width:640px) {
+            width: 25vw;
+        }
+        @media (min-width: 640px) and (max-width: 1024px) {
+            width: 20vw;
+        }
+
+    }
+    
+        img.active {
+            transform: scale(1.1);
+            transform-origin: bottom center;
+            filter: brightness(1);
+        }
+    }
+        
 }
 
 /* ------------------------------------------ End of Movies list -----------------------------------------*/
@@ -315,7 +335,7 @@ body{
         height: 2px;
         background-color: #f6f6f6;
         margin-bottom: 4px;
-        transition: 0.5s;
+        transition: all .5s ease;
         }
         span:first-child,
         span:last-child {
@@ -329,19 +349,21 @@ body{
     }
 
     #menu-mob{
-            display: none;
+            visibility: hidden;
             position: absolute;
             top: 50px;
             right: 5%;
             z-index: 1;
             background-color: #f6f6f6;
+            padding-right: 10px;
+            transition: all .5s ease;
             a {
               display: block;
               padding: 10px;
               text-decoration: none;
               color: #202020;
-              transition: 0.5s;
               width: 90px;
+              transition: all .5s ease;
               &:hover {
                 transform: translateX(10px);
               }
@@ -369,12 +391,16 @@ body{
 
 #big-mobile{
     &:hover #menu-mob {
-        display: block;
+        visibility: visible;
       }
   &:hover #menu-icon span:nth-child(2) {
     width: 100%;
   }
 }
 
-
-
+#more{
+    font-size: 1rem;
+    @media (min-width:1280px){
+        font-size: 1.5rem;
+    }
+}
