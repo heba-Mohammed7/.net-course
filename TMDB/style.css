@@ -11,12 +11,17 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-  min-height: 70vh;
+  min-height: 100vh;
 }
 
 .container {
   width: 90%;
   margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .container {
+    margin: 10% auto;
+  }
 }
 
 /* -------------------------------------------- start of Navber --------------------------------------------*/
@@ -52,7 +57,7 @@ body {
 }
 @media (min-width: 640px) {
   #menu-items-laptop ul {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 #menu-items-laptop ul li {
@@ -100,7 +105,7 @@ body {
 }
 @media (min-width: 640px) {
   #search-input {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 
@@ -124,14 +129,15 @@ body {
     width: 100%;
   }
 }
-@media (min-width: 640px) and (max-width: 1280px) {
+@media (min-width: 640px) and (max-width: 1024px) {
   #content {
     width: 45%;
   }
 }
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   #content {
     width: 50%;
+    margin-top: 1%;
   }
 }
 #content span {
@@ -146,6 +152,11 @@ body {
   font-size: 2.7rem;
   font-weight: 500;
 }
+@media (max-width: 640px) {
+  #content #movie-title {
+    min-height: 10vh;
+  }
+}
 #content #movie-description {
   font-size: 1rem;
   font-weight: 300;
@@ -154,12 +165,12 @@ body {
 }
 @media (max-width: 640px) {
   #content #movie-description {
-    min-height: 5vh;
+    min-height: 10vh;
   }
 }
 @media (min-width: 1280px) {
   #content #movie-description {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 }
 #content #IMDB {
@@ -184,6 +195,7 @@ body {
 @media (max-width: 640px) {
   #content #btn-trailer, #content #btn-now {
     width: 35%;
+    height: 5vh;
   }
 }
 #content #btn-trailer {
@@ -247,11 +259,16 @@ body {
   gap: 5vw;
   align-items: flex-end;
   padding: 4% 0;
-  margin-bottom: 4%;
 }
 @media (min-width: 1024px) {
   .scroll-list {
     gap: 3vw;
+    padding: 2% 0;
+  }
+}
+@media (max-width: 640px) {
+  .scroll-list {
+    height: 30vh;
   }
 }
 .scroll-list .poster {
@@ -262,17 +279,18 @@ body {
   transition: transform 0.5s ease, filter 0.5s ease;
   border-radius: 15px;
   filter: brightness(0.5);
-  width: 15vw;
+  width: 10vw;
   border-radius: 15px;
 }
 @media (max-width: 640px) {
   .scroll-list .poster img {
     width: 25vw;
+    height: 25vh;
   }
 }
 @media (min-width: 640px) and (max-width: 1024px) {
   .scroll-list .poster img {
-    width: 20vw;
+    width: 15vw;
   }
 }
 .scroll-list .poster img.active {
@@ -327,7 +345,7 @@ body {
 #menu-items-mobile #menu-mob {
   visibility: hidden;
   position: absolute;
-  top: 50px;
+  top: 35px;
   right: 5%;
   z-index: 1;
   background-color: #f6f6f6;
@@ -340,7 +358,6 @@ body {
   text-decoration: none;
   color: #202020;
   width: 90px;
-  transition: all 0.5s ease;
 }
 #menu-items-mobile #menu-mob a:hover {
   transform: translateX(10px);
