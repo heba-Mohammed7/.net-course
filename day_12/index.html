@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+  <title>Day 12</title>
+</head>
+
+<body class="min-h-screen w-full bg-fixed bg-gradient-to-bl from-purple-300 via-black to-black text-white">
+    <div class="container mx-auto px-4 py-6">
+      <nav class="flex justify-between items-center gap-4 relative">
+        <div class="text-2xl font-bold w-full md:w-auto flex justify-between items-center">
+          <span class="text-white">LOGO</span>
+          <button class="md:hidden text-white" id="menuButton">
+            <i class="fa-solid fa-bars h-6 w-6"></i>
+          </button>
+        </div>
+        
+        <div class="hidden md:flex items-center bg-gray-800 bg-opacity-50 rounded-full px-4 py-2 gap-2">
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">About</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Process</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Work</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Pricing</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hidden md:inline">|</a>
+          <span class="px-3 py-1 text-indigo-500">EN</span>
+          <button class="p-1 text-indigo-500">
+            <i class="fa-solid fa-moon "></i>
+          </button>
+          <a href="#" class="px-3 py-1 text-gray-400 hidden md:inline">|</a>
+          <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-4 md:px-6 py-2 rounded-full flex items-center">
+            Get Started
+            <i class="fa-regular fa-greater-than h-4 w-4 ml-2"></i>
+          </button>
+        </div>
+        
+
+
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full right-0 mt-2 w-56 bg-gray-900 bg-opacity-90 rounded-lg">
+          <div class="p-4 text-center">
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">About</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Process</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Work</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Pricing</a>
+            <div class="flex items-center justify-center py-2">
+              <span class="text-indigo-500 mr-4">EN</span>
+              <button class="text-indigo-500">
+                <i class="fa-solid fa-moon"></i>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2 rounded-full flex items-center mt-2">
+                Get Started
+                <i class="fa-regular fa-greater-than h-4 w-4 ml-2"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container mx-auto px-4 mt-12 md:mt-24">
+      <div>
+        <div class="text-indigo-500 text-sm mb-4">
+          DESIGN ENGINEERING AS A SERVICE ///
+        </div>
+        
+        <h1 class="text-3xl max-w-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+          Make people fall in love with your SaaS product
+        </h1>
+        
+        <p class="text-base md:text-lg mb-2">
+          The first-ever <span class="font-medium">design engineering subscription for SaaS</span> companies.
+        </p>
+        <p class="text-base md:text-lg mb-8 md:mb-10">
+          Thoughtfully crafting compelling sites your visitors won't want to leave.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-3 rounded-full flex items-center justify-center">
+            Get Started
+            <i class="fa-regular fa-greater-than h-4 w-4 ml-2"></i>
+          </button>
+          
+          <button class="bg-gray-800 border border-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-full flex items-center justify-center">
+            Schedule a Call
+            <i class="fa-regular fa-greater-than h-4 w-4 ml-2"></i>
+          </button>
+        </div>
+        
+        <div class="mt-8 md:mt-10 flex items-left gap-4">
+          <div class="flex -space-x-2">
+            <img src="1.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <img src="2.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <img src="3.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <span class="text-gray-400 ml-2">+12</span>
+          </div>
+          <div class="text-sm text-left sm:text-left">
+              Trusted by great builders like<br />
+            <span class="font-medium">Johannes Schickling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('menuButton').addEventListener('click', function() {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+      });
+    </script>
+  </body>
+</html>
