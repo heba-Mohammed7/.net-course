@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/3a958a915b.js" crossorigin="anonymous"></script>
+
+  <title>Day 13</title>
+
+
+</head>
+
+<body class="min-h-screen w-full bg-fixed bg-gradient-to-bl from-purple-300 via-black to-black text-white">
+  
+    <div class="container mx-auto py-6">
+      <nav class="flex justify-between items-center gap-4 relative">
+        <div class="text-2xl font-bold w-full md:w-auto flex justify-between items-center">
+          <span class="text-white">LOGO</span>
+          <button class="md:hidden text-white" id="menuButton">
+            <i class="fa-solid fa-bars h-6 w-6"></i>
+          </button>
+        </div>
+        
+        <div class="hidden md:flex items-center bg-gray-800 bg-opacity-50 rounded-full py-4 gap-2 ">
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">About</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Process</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Work</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hover:text-white">Pricing</a>
+          <a href="#" class="px-3 py-1 text-gray-400 hidden md:inline">|</a>
+          <span class="px-3 py-1 text-indigo-500">EN</span>
+          <button class="p-1 text-indigo-500">
+            <i class="fa-solid fa-moon "></i>
+          </button>
+          <a href="#" class="px-3 py-1 text-gray-400 hidden md:inline">|</a>
+          <div class="flex justify-center">
+            <div class="flex justify-center">
+              <button class="group bg-indigo-500 hover:bg-indigo-400 text-white px-4 py-2 rounded-full flex items-center mt-2 mr-2">
+                Get Started
+                <span class="ml-2 relative">
+                  <span class="inline-block group-hover:translate-x-2 transition-transform duration-300">&gt;</span>
+                  <span class="absolute top-1/2 left-[0] w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-4"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+
+
+        <div id="mobileMenu" class="hidden md:hidden absolute top-full right-0 py-3 mt-2 w-56 bg-gray-900 bg-opacity-90 rounded-lg">
+          <div class=" text-center">
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">About</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Process</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Work</a>
+            <a href="#" class="block py-2 text-gray-400 hover:text-white">Pricing</a>
+            <div class="flex items-center justify-center py-2">
+              <span class="text-indigo-500 mr-4">EN</span>
+              <button class="text-indigo-500">
+                <i class="fa-solid fa-moon"></i>
+              </button>
+            </div>
+            <div class="flex justify-center">
+              <button class="bg-indigo-500 hover:bg-indigo-400 text-white px-6 py-2 rounded-full flex items-center mt-2 group">
+                Get Started
+                <span class="ml-2 relative">
+                  <span class="inline-block group-hover:translate-x-2 transition-transform duration-300">&gt;</span>
+                  <span class="absolute top-1/2 left-[0] w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-4"></span>
+                </span>
+              </button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container mx-auto mt-12 md:mt-24">
+      <div>
+        <div class="text-indigo-500 text-sm mb-4">
+          DESIGN ENGINEERING AS A SERVICE ///
+        </div>
+        
+        <h1 class="text-3xl max-w-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+          Make people fall in love with your SaaS product
+        </h1>
+        
+        <p class="text-base md:text-lg mb-2">
+          The first-ever <span class="font-medium">design engineering subscription for SaaS</span> companies.
+        </p>
+        <p class="text-base md:text-lg mb-8 md:mb-10">
+          Thoughtfully crafting compelling sites your visitors won't want to leave.
+        </p>
+        
+        <div class="flex flex-row flex-wrap gap-4">
+          <div class="flex justify-center">
+            <button class="group bg-indigo-500 hover:bg-indigo-400 text-white px-4 py-2 rounded-full flex items-center mt-2 mr-2">
+              Get Started
+              <span class="ml-2 relative">
+                <span class="inline-block group-hover:translate-x-2 transition-transform duration-300">&gt;</span>
+                <span class="absolute top-1/2 left-[0] w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-4"></span>
+              </span>
+            </button>
+          </div>
+        
+          <div class="flex justify-center">
+            <button class="group bg-gray-800 border border-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-full flex items-center mt-2 mr-2">
+              Schedule a Call
+              <span class="ml-2 relative">
+                <span class="inline-block group-hover:translate-x-2 transition-transform duration-300">&gt;</span>
+                <span class="absolute top-1/2 left-[0] w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-4"></span>
+              </span>
+            </button>
+          </div>
+        </div>
+          
+
+        </div>
+        
+        <div class="mt-8 md:mt-10 flex items-left gap-4">
+          <div class="flex -space-x-2">
+            <img src="1.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <img src="2.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <img src="3.jpg" class="w-8 h-8 rounded-full border-2 border-gray-900">
+            <span class="text-gray-400 ml-2">+12</span>
+          </div>
+          <div class="text-sm text-left sm:text-left">
+              Trusted by great builders like<br />
+            <span class="font-medium">Johannes Schickling</span>
+          </div>
+        </div>
+
+        <div class="container mx-auto px-4 pt-8 sm:pt-10 overflow-hidden">
+          <div class="relative">
+            <div class="flex animate-scroll gap-8 sm:gap-12 items-center whitespace-nowrap py-4">
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/clearyst-white.svg" alt="Clearyst" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/stackbit-white.svg" alt="Stackbit" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/contentlayer-white.svg" alt="Contentlayer" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/urlbox-white.svg" alt="Urlbox" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/netlify-white.svg" alt="Netlify" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/effect-white.svg" alt="effect" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/airbus-white.svg" alt="airbus" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/scoo-white.svg" alt="scoo" class="h-10 sm:h-12">
+              </div>
+              
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/clearyst-white.svg" alt="Clearyst" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/stackbit-white.svg" alt="Stackbit" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/contentlayer-white.svg" alt="Contentlayer" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/urlbox-white.svg" alt="Urlbox" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/netlify-white.svg" alt="Netlify" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/effect-white.svg" alt="effect" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/airbus-white.svg" alt="airbus" class="h-10 sm:h-12">
+              </div>
+              <div class="flex-shrink-0">
+                <img src="https://lw.works/images/logos/scoo-white.svg" alt="scoo" class="h-10 sm:h-12">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    
+      <div class="container mx-auto my-16 md:my-24">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div >
+            <div class="flex items-start gap-4 mb-4">
+              <div class="bg-gradient-to-b from-slate-700 via-slate-700 to-purple-300 rounded-[10px] w-12 h-12 flex-shrink-0 flex items-center justify-center">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <h3 class="text-xl font-bold">Struggling to keep your site up-to-date?</h3>
+            </div>
+            <p class="text-gray-300 ml-16"> 
+              When your product evolves, it can be hard to keep your website up-to-date whilst maintaining highest design standards.
+            </p>
+          </div>
+          
+          <div>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="bg-gradient-to-b from-slate-700 via-slate-700 to-purple-300 rounded-[10px] w-12 h-12 flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-heart"></i>
+              </div>
+              <h3 class="text-xl font-bold">Unhappy with your current design/structure?</h3>
+            </div>
+            <p class="text-gray-300 ml-16">
+              When focussing on your product, your website can sometimes become unstructured and heavy over time, which also impacts the design.
+            </p>
+          </div>
+          
+          <div>
+            <div class="flex items-start gap-4 mb-4">
+              <div class="bg-gradient-to-b from-slate-700 via-slate-700 to-purple-300 rounded-[10px] w-12 h-12 flex-shrink-0 flex items-center justify-center">
+                <i class="fa-solid fa-money-check"></i>
+              </div>
+              <h3 class="text-xl font-bold">No budget for an in-house team?</h3>
+            </div>
+            <p class="text-gray-300 ml-16">
+              Great designers and developers are expensive. Who can afford A-players to build and maintain their products website?
+            </p>
+          </div>
+        </div>
+      </div>
+
+    <div class="container mx-auto mb-16 md:mb-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Focus on your product – let us handle your website</h2>
+          <p class="text-gray-300 mb-4">
+            We'll take care of designing your <span class="font-medium text-white">top-tier website</span> including graphics, animations and docs pages. And we'll build it out using the <span class="font-medium text-white">latest frontend technologies</span> – no Webflow, no Framer.
+          </p>
+          
+          <div class="flex items-center mt-10">
+            <div class="overflow-hidden mr-4">
+              <img src="team_member.jpg" alt="Team Member" class="w-16 h-16 rounded-full border-1 border-white">
+            </div>
+            <div>
+              <h4 class="font-bold">Lukas Wiesehan</h4>
+              <p class="text-gray-400">Lead Design Engineer</p>
+              <div class="flex gap-2 mt-2">
+                <a href="" class="hover:text-gray-400 text-white w-5 h-5">
+                  <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="" class="hover:text-gray-400 text-white w-5 h-5">
+                  <i class="fa-brands fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class=" content-center h-[400px] bg-[url('sec2_backimg.jpg')] bg-cover bg-center ">
+          <div>
+            <img src="sec2_img.jpg" alt="Website design" class="w-full h-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script>
+      document.getElementById('menuButton').addEventListener('click', function() {
+        document.getElementById('mobileMenu').classList.toggle('hidden');
+      });
+
+
+    </script>
+  </body>
+</html>
