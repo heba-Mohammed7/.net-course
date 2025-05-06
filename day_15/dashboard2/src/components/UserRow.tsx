@@ -1,5 +1,6 @@
 import React from 'react';
-import {Typography, TableCell, Checkbox, Avatar, Box } from '@mui/material';
+import { TableCell, Checkbox, Avatar, Box, Typography, IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
 
 interface User {
   name: { first: string; last: string };
@@ -21,14 +22,17 @@ const UserRow: React.FC<UserRowProps> = ({ user }) => {
       <TableCell><Checkbox /></TableCell>
       <TableCell>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          <Avatar src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`} sx={{ mr: 1, width: { xs: 24, sm: 40 }, height: { xs: 24, sm: 40 } }} />
-          <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
-            {`${user.name.first} ${user.name.last}`}
-          </Typography>
+          <Avatar src={user.picture.thumbnail} alt={`${user.name.first} ${user.name.last}`} sx={{ mr: 1, width: 32, height: 32 }} />
+          <Typography variant="body2">{`${user.name.first} ${user.name.last}`}</Typography>
         </Box>
       </TableCell>
-      <TableCell sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>{user.email}</TableCell>
-      <TableCell sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>{user.phone}</TableCell>
+      <TableCell>{user.email}</TableCell>
+      <TableCell>{user.phone}</TableCell>
+      <TableCell>
+        <IconButton size="small">
+          <EditIcon fontSize="small" />
+        </IconButton>
+      </TableCell>
     </>
   );
 };

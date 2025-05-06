@@ -9,29 +9,29 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const Sidebar: React.FC = () => {
   return (
     <List sx={{ padding: 0, flexShrink: 0 }}>
-      <ListItem sx={{ padding: { xs: '8px 4px', sm: '8px 12px' }, justifyContent: 'center' }}>
-        <ListItemIcon sx={{ minWidth: 0 }}>
-          <DashboardIcon fontSize="small" />
+      <ListItem sx={{ padding: '8px', justifyContent: 'center' }}>
+        <ListItemIcon sx={{ minWidth: 0, color: '#007bff' }}>
+          <DashboardIcon />
         </ListItemIcon>
       </ListItem>
-      <ListItem sx={{ padding: { xs: '8px 4px', sm: '8px 12px' }, justifyContent: 'center' }}>
+      <ListItem sx={{ padding: '8px', justifyContent: 'center' }}>
         <ListItemIcon sx={{ minWidth: 0 }}>
-          <PeopleIcon fontSize="small" />
+          <PeopleIcon />
         </ListItemIcon>
       </ListItem>
-      <ListItem sx={{ padding: { xs: '8px 4px', sm: '8px 12px' }, justifyContent: 'center' }}>
+      <ListItem sx={{ padding: '8px', justifyContent: 'center' }}>
         <ListItemIcon sx={{ minWidth: 0 }}>
-          <FolderIcon fontSize="small" />
+          <FolderIcon />
         </ListItemIcon>
       </ListItem>
-      <ListItem sx={{ padding: { xs: '8px 4px', sm: '8px 12px' }, justifyContent: 'center' }}>
+      <ListItem sx={{ padding: '8px', justifyContent: 'center' }}>
         <ListItemIcon sx={{ minWidth: 0 }}>
-          <EventIcon fontSize="small" />
+          <EventIcon />
         </ListItemIcon>
       </ListItem>
-      <ListItem sx={{ padding: { xs: '8px 4px', sm: '8px 12px' }, justifyContent: 'center' }}>
+      <ListItem sx={{ padding: '8px', justifyContent: 'center' }}>
         <ListItemIcon sx={{ minWidth: 0 }}>
-          <SettingsIcon fontSize="small" />
+          <SettingsIcon />
         </ListItemIcon>
       </ListItem>
     </List>

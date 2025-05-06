@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import UserRow from './UserRow';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import axios from 'axios';
 
 interface User {
   name: { first: string; last: string };
@@ -21,9 +22,8 @@ interface UserResponse {
 }
 
 const fetchUsers = async (page: number): Promise<User[]> => {
-  const res = await fetch(`https://randomuser.me/api?page=${page}&results=10`);
-  const data: UserResponse = await res.json();
-  return data.results;
+  const res = await axios.get<UserResponse>(`https://randomuser.me/api?page=${page}&results=10`);
+  return res.data.results;
 };
 
 const UserTable: React.FC = () => {
@@ -43,16 +43,11 @@ const UserTable: React.FC = () => {
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+    setExpandedRow(null);
   };
 
   const handleExpand = (email: string) => {
     setExpandedRow(expandedRow === email ? null : email);
-  };
-
-  const getHRYear = (registeredDate: string): string => {
-    const regDate = new Date(registeredDate);
-    const years = new Date().getFullYear() - regDate.getFullYear();
-    return `${years} Years`;
   };
 
   if (error) return <div>An error occurred</div>;
@@ -63,28 +58,28 @@ const UserTable: React.FC = () => {
         <Table sx={{ minWidth: { xs: 650, sm: 800 } }}>
           <TableHead>
             <TableRow>
-              <TableCell />
-              <TableCell><Checkbox /></TableCell>
+              <TableCell sx={{ width: 48 }} />
+              <TableCell sx={{ width: 48 }}><Checkbox /></TableCell>
               <TableCell>Name</TableCell>
-              <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>Email</TableCell>
-              <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>Phone</TableCell>
-
+              <TableCell>Email</TableCell>
+              <TableCell>Phone</TableCell>
+              <TableCell sx={{ width: 48 }} />
             </TableRow>
           </TableHead>
           <TableBody>
             {isLoading ? (
-              Array(itemsPerPage).fill(0).map((_, index) => (
-                <TableRow key={index}>
-                  <TableCell />
-                  <TableCell><Skeleton variant="rectangular" width={20} height={20} /></TableCell>
-                  <TableCell><Skeleton variant="text" /></TableCell>
-                  <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}><Skeleton variant="text" /></TableCell>
-                  <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}><Skeleton variant="text" /></TableCell>
-                  <TableCell><Skeleton variant="text" /></TableCell>
-                  <TableCell><Skeleton variant="text" /></TableCell>
-                  <TableCell><Skeleton variant="text" /></TableCell>
-                </TableRow>
-              ))
+              Array(itemsPerPage)
+                .fill(0)
+                .map((_, index) => (
+                  <TableRow key={index}>
+                    <TableCell><Skeleton variant="circular" width={24} height={24} /></TableCell>
+                    <TableCell><Skeleton variant="rectangular" width={20} height={20} /></TableCell>
+                    <TableCell><Skeleton variant="text" /></TableCell>
+                    <TableCell><Skeleton variant="text" /></TableCell>
+                    <TableCell><Skeleton variant="text" /></TableCell>
+                    <TableCell><Skeleton variant="circular" width={24} height={24} /></TableCell>
+                  </TableRow>
+                ))
             ) : (
               data?.map((user) => (
                 <React.Fragment key={user.email}>
@@ -100,18 +95,14 @@ const UserTable: React.FC = () => {
                       </IconButton>
                     </TableCell>
                     <UserRow user={user} />
-
                   </TableRow>
                   <TableRow>
-                    <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={8}>
+                    <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                       <Collapse in={expandedRow === user.email} timeout="auto" unmountOnExit>
                         <Box sx={{ margin: 1 }}>
-                          
-                          
                           <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
                             Age: {user.dob.age}
                           </Typography>
-                          
                           <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
                             Address: {user.location.street.number} {user.location.street.name}, {user.location.city}, {user.location.state} {user.location.postcode}
                           </Typography>

@@ -7,18 +7,11 @@ import TeamList from './pages/TeamList';
 const queryClient = new QueryClient();
 const theme = createTheme({
   palette: {
-    background: {
-      default: '#f0f2f5',
-    },
+    primary: { main: '#007bff' },
+    background: { default: '#e9ecef' },
   },
   breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 960,
-      lg: 1280,
-      xl: 1920,
-    },
+    values: { xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920 },
   },
 });
 
