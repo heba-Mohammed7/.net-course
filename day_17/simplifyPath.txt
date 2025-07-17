@@ -1,0 +1,21 @@
+public class Solution {
+    public string SimplifyPath(string path) {
+        Stack<string> stack = new Stack<string>();
+        string[] components = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+        foreach (string component in components) {
+            if (component == ".") {
+                continue;
+            } else if (component == "..") {
+                if (stack.Count > 0) {
+                    stack.Pop();
+                }
+            } else {
+                stack.Push(component);
+            }
+        }
+        List<string> result = new List<string>(stack);
+        result.Reverse();
+        return "/" + string.Join("/", result);
+
+    }
+}

@@ -1,0 +1,50 @@
+public class Solution {
+    public bool IsValid(string s) {
+        Stack stack=new Stack();              
+        foreach(char x in s){
+            if(c=='('){
+                stack.Push(c);
+              
+            }
+            else if(x=='['){
+                stack.Push(c);
+               
+            }
+            else if(x=='{'){
+                stack.Push(c);
+               
+            }
+            if(stack.Count==0){
+                   return false;
+               }           
+           else if(x==')'){                            
+                if(stack.Peek().ToString()=="("){
+                                       stack.Pop();
+
+                }
+                 else
+                     return false;
+                              
+            }
+             else if(x=='}'){                               
+                if(stack.Peek().ToString()=="{"){
+                                       stack.Pop();
+                }
+                 else
+                     return false;                        
+            }
+           else if(x==']'){
+                if(stack.Peek().ToString()=="["){
+                                       stack.Pop();
+
+                }
+                 else
+                     return false;
+            }
+        }
+        if(stack.Count!=0){
+            return false;
+        }
+        return true;
+    }
+}
