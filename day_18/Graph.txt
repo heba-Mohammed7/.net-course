@@ -1,0 +1,62 @@
+public class Graph
+{
+    private Dictionary<string, List<string>> adjList;
+    private bool isDirected;
+
+    public Graph(bool isDirected = false)
+    {
+        this.isDirected = isDirected;
+        adjList = new Dictionary<string, List<string>>();
+    }
+
+    public void AddVertex(string vertex)
+    {
+        if (!adjList.ContainsKey(vertex))
+        {
+            adjList[vertex] = new List<string>();
+        }
+    }
+
+    public void AddEdge(string from, string to)
+    {
+        AddVertex(from);
+        AddVertex(to);
+        adjList[from].Add(to);
+        if (!isDirected)
+        {
+            adjList[to].Add(from);
+        }
+    }
+
+    public void RemoveEdge(string from, string to)
+    {
+        if (adjList.ContainsKey(from))
+        {
+            adjList[from].Remove(to);
+        }
+
+        if (!isDirected && adjList.ContainsKey(to))
+        {
+            adjList[to].Remove(from);
+        }
+    }
+
+    public void RemoveVertex(string vertex)
+    {
+        if (!adjList.ContainsKey(vertex)) return;
+        foreach (var v in adjList.Values)
+        {
+            v.Remove(vertex);
+        }
+        adjList.Remove(vertex);
+    }
+
+    public void Print()
+    {
+        foreach (var vertex in adjList)
+        {
+            Console.Write(vertex.Key + " -> ");
+            Console.WriteLine(string.Join(", ", vertex.Value));
+        }
+    }
+}

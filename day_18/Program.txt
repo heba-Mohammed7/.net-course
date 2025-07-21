@@ -1,0 +1,94 @@
+﻿using ConsoleApp2;
+///////////////////////////////////// 1 ///////////////////////////////////
+var peopleQueue = new Queue<Person>();
+peopleQueue.Enqueue(new Person { Name = "Heba", Gender = "Female" });
+peopleQueue.Enqueue(new Person { Name = "Mohammed", Gender = "Male" });
+peopleQueue.Enqueue(new Person { Name = "Attia", Gender = "Male" });
+
+string getFirstMaleName(Queue<Person> queue, Func<Person, bool> condition)
+{
+    foreach (var person in queue)
+    {
+        if (condition(person))
+        {
+            return person.Name;
+        }
+    }
+
+    return null;
+}
+
+Person getFirstMatching(Queue<Person> stack, Predicate<Person> match)
+{
+    foreach (var person in stack)
+    {
+        if (match(person))
+        {
+            return person;
+        }
+    }
+
+    return null; 
+}
+
+string firstMaleName = getFirstMaleName(peopleQueue, person => person.Gender == "Male");
+Console.WriteLine("First male: " + firstMaleName); 
+///////////////////////////////////// 2 ///////////////////////////////////
+
+Person result = getFirstMatching(peopleQueue, p => p.Name == "Mohammed");
+
+if (result != null)
+    Console.WriteLine("Found: " + result.Name);
+else
+    Console.WriteLine("Mohammed not found.");
+
+
+///////////////////////////////////// 3 ///////////////////////////////////
+
+int FindMin(TreeNode root)
+{
+    if (root == null)
+        return int.MaxValue;
+
+    int leftMin = FindMin(root.Left);
+    int rightMin = FindMin(root.Right);
+
+    return Math.Min(root.Value, Math.Min(leftMin, rightMin));
+}
+
+TreeNode root = new TreeNode(10);
+root.Left = new TreeNode(5);
+root.Right = new TreeNode(20);
+root.Left.Left = new TreeNode(2);
+root.Left.Right = new TreeNode(7);
+
+int minValue = FindMin(root);
+Console.WriteLine("smallest value: " + minValue); 
+
+///////////////////////////////////// 4 ///////////////////////////////////
+
+var graph = new Graph();
+
+graph.AddEdge("A", "B");
+graph.AddEdge("A", "C");
+graph.AddEdge("B", "D");
+
+Console.WriteLine("Original Graph:");
+graph.Print();
+
+graph.RemoveEdge("A", "B");
+Console.WriteLine("\nAfter Removing Edge A-B:");
+graph.Print();
+
+graph.RemoveVertex("C");
+Console.WriteLine("\nAfter Removing Vertex C:");
+graph.Print();
+
+///////////////////////////////////// 5 ///////////////////////////////////
+
+var person = new Person { Name = "Heba", Gender = "Female"};
+
+Student student = Automapper.Map<Person, Student>(person);
+
+Console.WriteLine($"Name: {student.Name}");
+Console.WriteLine($"Gender: {student.Gender}");

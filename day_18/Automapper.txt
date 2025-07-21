@@ -1,0 +1,36 @@
+namespace ConsoleApp2;
+using System;
+using System.Reflection;
+
+public class Automapper
+{
+    public static TTarget Map<TSource, TTarget>(TSource source) where TTarget : new()
+    {
+        if (source == null) throw new ArgumentNullException(nameof(source));
+
+        TTarget target = new TTarget();
+
+        var sourceProps = typeof(TSource).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+        var targetProps = typeof(TTarget).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+        foreach (var sourceProp in sourceProps)
+        {
+            if (!sourceProp.CanRead) continue;
+
+            foreach (var targetProp in targetProps)
+            {
+                if (!targetProp.CanWrite) continue;
+
+                if (sourceProp.Name == targetProp.Name &&
+                    sourceProp.PropertyType == targetProp.PropertyType)
+                {
+                    var value = sourceProp.GetValue(source);
+                    targetProp.SetValue(target, value);
+                    break;
+                }
+            }
+        }
+
+        return target;
+    }
+}
