@@ -1,0 +1,143 @@
+--1--
+create proc studentcountperdept
+as
+select d.dept_name, count(s.st_id) as num_students
+from department d
+left join student s on d.dept_id = s.dept_id
+group by d.dept_name
+
+studentcountperdept
+
+--2--
+create procedure CheckEmployeesInProjectP1
+as
+begin
+    declare @employeeCount int;
+    select @employeeCount = count(*) 
+    from Works_for w
+    join Employee e on w.ESSn = e.SSN
+    where w.Pno = (select Pnumber from Project where Pname = 'p1');
+
+    if @employeeCount >= 3
+        print 'The number of employees in the project p1 is 3 or more'
+    else
+    begin
+        print 'The following employees work for the project p1';
+        select e.fname, e.lname
+        from Works_for w
+        join Employee e on w.ESSn = e.SSN
+        where w.Pno = (select Pnumber from Project where Pname = 'p1');
+    end
+end;
+exec CheckEmployeesInProjectP1
+
+--3--
+create procedure UpdateEmployeeInProject @oldEmpSSN int, @newEmpSSN int, @projectNumber int
+as
+begin
+    update Works_for
+    set ESSn = @newEmpSSN
+    where ESSn = @oldEmpSSN and Pno = @projectNumber;
+
+    if @@ROWCOUNT = 0
+        print 'No update performed. Check employee or project number.';
+end;
+
+UpdateEmployeeInProject 521634, 512463 , 300
+
+--4--
+alter table Project
+add budget money null;
+
+update Project
+set budget = 
+    case Pnumber
+        when 1 then 50000
+        when 2 then 75000
+        else 100000
+    end;
+
+create table Audit
+(
+    ProjectNo int,
+    UserName nvarchar(50),
+    ModifiedDate date,
+    Budget_Old money,
+    Budget_New money
+);
+
+insert into Audit (ProjectNo, UserName, ModifiedDate, Budget_Old, Budget_New)
+values (2, 'Dbo', '2008-01-31', 95000, 200000);
+
+--5--
+create trigger trg_PreventDepartmentInsert
+on Departments
+instead of insert
+as
+begin
+    print 'You can’t insert a new record in the Department table';
+    rollback;
+end;
+insert into Departments (Dname, Dnum) values ('test', 1)
+
+--6--
+create trigger trg_PreventMarchEmployeeInsert
+on Employee
+instead of insert
+as
+begin
+    declare @currentMonth int = month(getdate());
+    if @currentMonth = 3
+    begin
+        print 'Insertion into Employee table is not allowed in March';
+        rollback;
+    end
+    else
+    begin
+        insert into Employee (SSN, fname, lname)
+        select SSN, fname, lname from inserted;
+    end
+end;
+
+--7--
+create table Student_Audit
+(
+    Server_User_Name nvarchar(50),
+    Date datetime,
+    Note nvarchar(200)
+);
+
+create trigger trg_StudentInsertAudit
+on Student
+after insert
+as
+begin
+    insert into Student_Audit (Server_User_Name, Date, Note)
+    select 
+        suser_sname(),
+        getdate(),
+        '[' + suser_sname() + '] Insert New Row with Key=[' + cast(i.St_Id as nvarchar(10)) + '] in table [Student]'
+    from inserted i;
+end;
+
+--8--
+
+create trigger trg_StudentDeleteAudit
+on Student
+instead of delete
+as
+begin
+    insert into Student_Audit (Server_User_Name, Date, Note)
+    select 
+        suser_sname(),
+        getdate(),
+        'try to delete Row with Key=[' + cast(d.St_Id as nvarchar(10)) + ']'
+    from deleted d;
+
+    print 'Deletion is prevented and logged in Student_Audit table';
+    rollback;
+end;
+
+delete from Student where St_Id = 1;
+
+--9--

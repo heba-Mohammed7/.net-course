@@ -1,0 +1,132 @@
+--1--
+create function getMonth (@input date)
+returns nvarchar(10)
+as
+begin
+    declare @nameMonth nvarchar(20)
+
+    -- Get the full month name using DATENAME function
+    set @nameMonth = DATENAME(MONTH, @input)
+
+    return @nameMonth
+end
+
+select dbo.getMonth('2003-07-07') as nameMonth
+
+
+
+---------------2--------------------
+create function getNumbers(@n1 int,@n2 int)
+	returns @list table (numbers int)
+as
+begin
+	declare @n int=@n1;
+	while @n<=@n2
+	begin
+	insert into @list(numbers) values (@n);
+	set @n=@n+1;
+	end
+
+return
+end
+select * from dbo.getNumbers(5, 10);
+
+
+
+------------3--------------
+create function getStuDept(@id int)
+returns table
+as
+return(
+	select CONCAT(s.St_Fname,' ',s.St_Lname)as [Fullname] , d.Dept_Name from Student s,Department d
+	where s.St_Id=@id and d.Dept_Id =s.Dept_Id
+)
+
+select * from getStuDept(5);
+
+
+--------------4--------------
+create function isNameNull(@id int)
+returns varchar(50)
+begin
+	declare @mes varchar(50),@fname varchar(50),@lname varchar(50) 
+	select @fname= st_fname, @lname= st_lname from Student s where s.St_Id=@id
+	if @fname is null and @lname is null
+		set @mes ='First name & last name are null'
+	else if @fname is null
+		set @mes ='first name is null'
+	else if @lname is null
+		set @mes ='last name is null'
+	else
+		set @mes ='First name & last name are not null'
+return @mes
+end
+
+select dbo.isNameNull(5) 
+
+--------------5--------------
+-------------------------------------------
+-------------------------------------------
+-------------------------------------------
+-------------------------------------------
+
+
+-------------------6------------------------
+create function getstuds(@format varchar(50))
+returns @t table
+           (
+			sname varchar(50)
+		   )
+as
+begin
+    if @format='firstName'
+		insert @t
+		select ISNULL( st_fname,'empty ')  from student
+    else if @format='lastName'
+		insert @t
+		select ISNULL( St_Lname,'empty ') from student
+     else if @format='fullName'
+		insert @t
+		select ISNULL( st_fname,'empty')+' '+ISNULL( St_Lname,'empty') from student
+    return 
+end
+
+
+select * from getstuds('lastName')
+
+
+
+-------------------7------------------------
+select St_Id, SUBSTRING(St_Fname, 1, LEN(St_Fname)-1) from Student 
+
+-------------------8------------------------
+declare @column varchar(50)='St_Fname,St_Lname',
+	   @table varchar(50)='Student'
+
+execute('select '+@column+' from '+@table)
+
+------------------- Part 2 ------------------------
+-------------------1------------------------
+Use Company
+
+create function getEmps(@id int)
+returns table
+as
+return(
+	select p.Pname,e.Fname,e.Lname from Project p,Employee e, Works_for w
+	where p.Pnumber=@id and e.SSN=w.ESSn and p.Pnumber=w.Pno
+)
+
+select * from getEmps(300);
+
+
+-------------------2------------------------
+create function budget(@percentage decimal(2, 2),@id int)
+returns decimal(10,3)
+as
+begin
+	declare @total decimal(10,3)=((select Salary from Employee where SSN=@id)*(1+@percentage))
+return @total
+end
+
+select dbo.budget(.20,102672)
