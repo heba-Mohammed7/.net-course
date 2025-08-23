@@ -1,7 +1,7 @@
 using ConsoleApp3.Data;
 using ConsoleApp3.Models;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace ConsoleApp3.Services;
 
@@ -17,97 +17,91 @@ public class ProductCategoryService
     // Category CRUD
     public async Task<int> CreateCategoryAsync(string name)
     {
-        var nameParam = new SqlParameter("@Name", name);
-        var idParam = new SqlParameter
-        {
-            ParameterName = "@Id",
-            SqlDbType = System.Data.SqlDbType.Int,
-            Direction = System.Data.ParameterDirection.Output
-        };
-
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_CreateCategory @Name, @Id OUTPUT", nameParam, idParam);
-        return (int)idParam.Value;
+        var category = new Category { Name = name };
+        _context.Categories.Add(category);
+        await _context.SaveChangesAsync();
+        return category.Id;
     }
 
     public async Task UpdateCategoryAsync(int id, string name)
     {
-        var parameters = new[]
-        {
-            new SqlParameter("@Id", id),
-            new SqlParameter("@Name", name)
-        };
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_UpdateCategory @Id, @Name", parameters);
+        var category = await _context.Categories.FindAsync(id);
+        if (category == null)
+            throw new Exception($"Category with ID {id} not found");
+
+        category.Name = name;
+        _context.Categories.Update(category);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteCategoryAsync(int id)
     {
-        var parameter = new SqlParameter("@Id", id);
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteCategory @Id", parameter);
+        var category = await _context.Categories.FindAsync(id);
+        if (category == null)
+            throw new Exception($"Category with ID {id} not found");
+
+        _context.Categories.Remove(category);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<Category> GetCategoryByIdAsync(int id)
     {
-        var parameter = new SqlParameter("@Id", id);
         return await _context.Categories
-            .FromSqlRaw("EXEC sp_GetCategoryById @Id", parameter)
-            .SingleOrDefaultAsync();
+            .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public async Task<List<Category>> GetAllCategoriesAsync()
     {
         return await _context.Categories
-            .FromSqlRaw("EXEC sp_GetAllCategories")
             .ToListAsync();
     }
 
     // Product CRUD
     public async Task<int> CreateProductAsync(string name, decimal price, int categoryId)
     {
-        var nameParam = new SqlParameter("@Name", name);
-        var priceParam = new SqlParameter("@Price", price);
-        var categoryIdParam = new SqlParameter("@CategoryId", categoryId);
-        var idParam = new SqlParameter
-        {
-            ParameterName = "@Id",
-            SqlDbType = System.Data.SqlDbType.Int,
-            Direction = System.Data.ParameterDirection.Output
+        var product = new Product 
+        { 
+            Name = name, 
+            Price = price, 
+            CategoryId = categoryId 
         };
-
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_CreateProduct @Name, @Price, @CategoryId, @Id OUTPUT",
-            nameParam, priceParam, categoryIdParam, idParam);
-        return (int)idParam.Value;
+        _context.Products.Add(product);
+        await _context.SaveChangesAsync();
+        return product.Id;
     }
 
     public async Task UpdateProductAsync(int id, string name, decimal price, int categoryId)
     {
-        var parameters = new[]
-        {
-            new SqlParameter("@Id", id),
-            new SqlParameter("@Name", name),
-            new SqlParameter("@Price", price),
-            new SqlParameter("@CategoryId", categoryId)
-        };
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_UpdateProduct @Id, @Name, @Price, @CategoryId", parameters);
+        var product = await _context.Products.FindAsync(id);
+        if (product == null)
+            throw new Exception($"Product with ID {id} not found");
+
+        product.Name = name;
+        product.Price = price;
+        product.CategoryId = categoryId;
+        _context.Products.Update(product);
+        await _context.SaveChangesAsync();
     }
 
     public async Task DeleteProductAsync(int id)
     {
-        var parameter = new SqlParameter("@Id", id);
-        await _context.Database.ExecuteSqlRawAsync("EXEC sp_DeleteProduct @Id", parameter);
+        var product = await _context.Products.FindAsync(id);
+        if (product == null)
+            throw new Exception($"Product with ID {id} not found");
+
+        _context.Products.Remove(product);
+        await _context.SaveChangesAsync();
     }
 
     public async Task<Product> GetProductByIdAsync(int id)
     {
-        var parameter = new SqlParameter("@Id", id);
         return await _context.Products
-            .FromSqlRaw("EXEC sp_GetProductById @Id", parameter)
-            .SingleOrDefaultAsync();
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 
     public async Task<List<Product>> GetAllProductsAsync()
     {
         return await _context.Products
-            .FromSqlRaw("EXEC sp_GetAllProducts")
             .ToListAsync();
     }
 
@@ -116,22 +110,31 @@ public class ProductCategoryService
     {
         try
         {
-            var parameter = new SqlParameter("@CategoryId", categoryId);
-            var result = await _context.Database
-                .SqlQueryRaw<decimal>("SELECT dbo.fn_GetCategoryTotalValue(@CategoryId) AS Value", parameter)
-                .SingleAsync();
-            return result;
+            return await _context.Products
+                .Where(p => p.CategoryId == categoryId)
+                .SumAsync(p => p.Price);
         }
-        catch (SqlException ex)
+        catch (Exception ex)
         {
             throw new Exception($"Database error: {ex.Message}");
         }
     }
+
     // View: Get Product and Category Details
     public async Task<List<ProductCategoryView>> GetProductCategoryViewAsync()
     {
-        return await _context.Set<ProductCategoryView>()
-            .FromSqlRaw("SELECT * FROM vw_ProductCategory")
+        return await _context.Products
+            .Join(_context.Categories,
+                product => product.CategoryId,
+                category => category.Id,
+                (product, category) => new ProductCategoryView
+                {
+                    ProductId = product.Id,
+                    ProductName = product.Name,
+                    Price = product.Price,
+                    CategoryId = category.Id,
+                    CategoryName = category.Name
+                })
             .ToListAsync();
     }
 }
