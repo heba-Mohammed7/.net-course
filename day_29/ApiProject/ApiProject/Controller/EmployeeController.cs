@@ -16,7 +16,7 @@ public class EmployeeController(ApplicationDbContext context, IMapper mapper) : 
         var employee = mapper.Map<Employee>(employeeDto);
         await context.Employees.AddAsync(employee, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        return CreatedAtAction(nameof(GetEmployeeById), new { id = employee.Id }, employee);
+        return Ok(employee.Id);
     }
 
     [HttpGet("{id}")]
@@ -70,6 +70,6 @@ public class EmployeeController(ApplicationDbContext context, IMapper mapper) : 
         context.Employees.Update(newEmployee);
         context.SaveChanges();
         
-        return Ok(employee);
+        return Ok("updated successfully");
     }
 }

@@ -25,7 +25,7 @@ public class DepartmentController : ControllerBase
         var department = mapper.Map<Department>(departmentDto);
         await context.Departments.AddAsync(department, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        return CreatedAtAction(nameof(GetDepartmentById), new { id = department.Id }, department);
+        return Ok(department.Id);
     }
 
     [HttpGet("{id}")]
@@ -79,6 +79,6 @@ public class DepartmentController : ControllerBase
         context.Departments.Update(newDepartment);
         context.SaveChanges();
         
-        return Ok(department);
+        return Ok("updated successfully");
     }
 }

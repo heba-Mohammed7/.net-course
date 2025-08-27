@@ -24,7 +24,7 @@ public class RoleController : ControllerBase
         var role = mapper.Map<Role>(roleDto);
         await context.Roles.AddAsync(role, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-        return CreatedAtAction(nameof(GetRoleById), new { id = role.Id }, role);
+        return Ok(role.Id);
     }
 
     [HttpGet("{id}")]
@@ -69,6 +69,6 @@ public class RoleController : ControllerBase
         context.Roles.Update(newRole);
         context.SaveChanges();
         
-        return Ok(role);
+        return Ok("updated successfully");
     }
 }

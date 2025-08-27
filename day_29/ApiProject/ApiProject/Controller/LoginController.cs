@@ -30,9 +30,7 @@ public class LoginController(ApplicationDbContext context, IMapper mapper) : Con
         login.Employee = employee;
         await context.Logins.AddAsync(login, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
-        var loginResponseDto = mapper.Map<LoginResponseDto>(login);
-        return CreatedAtAction(nameof(GetLoginById), new { id = login.Id }, loginResponseDto);
+        return Ok(login.Id);
     }    
     
     [HttpGet("{id}")]
@@ -79,7 +77,6 @@ public class LoginController(ApplicationDbContext context, IMapper mapper) : Con
         context.Logins.Update(newLogin);
         context.SaveChanges();
 
-        var loginResponseDto = mapper.Map<LoginResponseDto>(login);
-        return Ok(loginResponseDto);
+        return Ok("updated successfully");
     }
 }
