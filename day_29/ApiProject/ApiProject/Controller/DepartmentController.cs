@@ -35,20 +35,13 @@ public class DepartmentController : ControllerBase
             .Include(d => d.Employees)
             .ThenInclude(e => e.Role)
             .FirstOrDefault(d => d.Id == id);
-    
+
         if (department == null)
         {
             return NotFound();
         }
-    
-        var departmentDto = new DepartmentResponseDto
-        {
-            Id = department.Id,
-            Name = department.Name,
-            Description = department.Description,
-            Employees = department.Employees.Select(e => mapper.Map<EmployeeResponseDto>(e)).ToList()
-        };
-    
+
+        var departmentDto = mapper.Map<DepartmentResponseDto>(department);
         return Ok(departmentDto);
     }
 

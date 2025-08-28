@@ -11,7 +11,6 @@ public class DepartmentProfile : Profile
         CreateMap<DepartmentDto, Department>()
             .ForMember(dest => dest.Employees, opt => opt.Ignore());
 
-        CreateMap<Department, DepartmentResponseDto>()
-            .ForMember(dest => dest.Employees, opt => opt.MapFrom(src => src.Employees));
+        CreateMap<Department, DepartmentResponseDto>();
     }
 }
