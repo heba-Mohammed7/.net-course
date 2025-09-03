@@ -11,20 +11,8 @@ namespace Task.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EmployeesController : ControllerBase
+public class EmployeesController(ApplicationDbContext _context, IMapper _mapper, IGenericRepository<Employee> _repository, IFileUpload _fileUpload) : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly IGenericRepository<Employee> _repository;
-    private readonly IFileUpload _fileUpload;
-
-    public EmployeesController(ApplicationDbContext context, IMapper mapper, IGenericRepository<Employee> repository, IFileUpload fileUpload)
-    {
-        _context = context;
-        _mapper = mapper;
-        _repository = repository;
-        _fileUpload = fileUpload;
-    }
 
     [HttpPost]
     public async Task<IActionResult> CreateEmployee([FromForm] EmployeeDto employeeDto, CancellationToken cancellationToken)

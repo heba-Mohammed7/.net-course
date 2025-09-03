@@ -10,18 +10,9 @@ namespace Task.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DepartmentsController : ControllerBase
+public class DepartmentsController(ApplicationDbContext _context, IMapper _mapper, IGenericRepository<Department> _repository) : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly IGenericRepository<Department> _repository;
 
-    public DepartmentsController(ApplicationDbContext context, IMapper mapper, IGenericRepository<Department> repository)
-    {
-        _context = context;
-        _mapper = mapper;
-        _repository = repository;
-    }
 
     [HttpPost]
     public async Task<IActionResult> CreateDepartment(DepartmentDto departmentDto, CancellationToken cancellationToken)

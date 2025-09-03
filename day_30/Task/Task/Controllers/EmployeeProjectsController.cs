@@ -10,18 +10,8 @@ namespace Task.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class EmployeeProjectsController : ControllerBase
+public class EmployeeProjectsController(ApplicationDbContext _context, IMapper _mapper, IGenericRepository<EmployeeProject> _repository) : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly IGenericRepository<EmployeeProject> _repository;
-
-    public EmployeeProjectsController(ApplicationDbContext context, IMapper mapper, IGenericRepository<EmployeeProject> repository)
-    {
-        _context = context;
-        _mapper = mapper;
-        _repository = repository;
-    }
 
     [HttpPost]
     public async Task<IActionResult> CreateEmployeeProject(EmployeeProjectDto employeeProjectDto, CancellationToken cancellationToken)

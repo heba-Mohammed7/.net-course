@@ -10,18 +10,8 @@ namespace Task.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class DependentsController : ControllerBase
+public class DependentsController(ApplicationDbContext _context, IMapper _mapper, IGenericRepository<Dependent> _repository) : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly IGenericRepository<Dependent> _repository;
-
-    public DependentsController(ApplicationDbContext context, IMapper mapper, IGenericRepository<Dependent> repository)
-    {
-        _context = context;
-        _mapper = mapper;
-        _repository = repository;
-    }
 
     [HttpPost]
     public async Task<IActionResult> CreateDependent(DependentDto dependentDto, CancellationToken cancellationToken)

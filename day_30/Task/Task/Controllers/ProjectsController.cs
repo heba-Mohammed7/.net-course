@@ -10,19 +10,8 @@ namespace Task.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProjectsController : ControllerBase
+public class ProjectsController(ApplicationDbContext _context, IMapper _mapper, IGenericRepository<Project> _repository) : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-    private readonly IGenericRepository<Project> _repository;
-
-    public ProjectsController(ApplicationDbContext context, IMapper mapper, IGenericRepository<Project> repository)
-    {
-        _context = context;
-        _mapper = mapper;
-        _repository = repository;
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateProject(ProjectDto projectDto, CancellationToken cancellationToken)
     {
