@@ -21,7 +21,13 @@ public class StudentQueryHandler(IStudentRepository _studentRepository, IMapper 
     {
         try
         {
-            var spec = new StudentSpecification(null);
+            var filterDto = new StudentResponseDto
+            {
+                Name = request.Name,
+                Age = request.Age ?? 0
+            };
+            
+            var spec = new StudentSpecification(filterDto);
             var query =await _studentRepository.GetQueryableAsync(spec);
             var students = await query.ToListAsync(cancellationToken);
             var studentDtos = _mapper.Map<List<StudentResponseDto>>(students);

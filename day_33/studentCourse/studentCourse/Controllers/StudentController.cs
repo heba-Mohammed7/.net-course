@@ -3,9 +3,9 @@ namespace studentCourse.Controllers;
 public class StudentController : BaseController
     {
         [HttpGet(Router.StudentRouter.Main)]
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All([FromQuery] string? name, [FromQuery] int? age)
         {
-            var result = await mediator.Send(new GetAllStudentsDto());
+            var result = await mediator.Send(new GetAllStudentsDto { Name = name, Age = age });
             return Result(result);
         }
 

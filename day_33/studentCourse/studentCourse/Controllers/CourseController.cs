@@ -4,9 +4,9 @@ public class CourseController : BaseController
 {
 
     [HttpGet(Router.CourseRouter.Main)]
-    public async Task<IActionResult> All()
+    public async Task<IActionResult> All([FromQuery] string? name, [FromQuery] string? code)
     {
-        var result = await mediator.Send(new GetAllCoursesDto());
+        var result = await mediator.Send(new GetAllCoursesDto { Name = name, Code = code });
         return Result(result);
     }
 

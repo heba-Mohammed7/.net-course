@@ -10,7 +10,13 @@ public class CourseQueryHandler(ICourseRepository _courseRepository, IMapper _ma
     {
         try
         {
-            var spec = new CourseSpecification(null);
+            var filterDto = new CourseResponseDto
+            {
+                Cname = request.Name,
+                Code = request.Code
+            };
+            
+            var spec = new CourseSpecification(filterDto);
             var query = await _courseRepository.GetQueryableAsync(spec); 
             var courses = await query.ToListAsync(cancellationToken);
             var courseDtos = _mapper.Map<List<CourseResponseDto>>(courses); 

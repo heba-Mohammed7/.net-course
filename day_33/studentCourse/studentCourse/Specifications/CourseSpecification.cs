@@ -17,7 +17,7 @@ public class CourseSpecification : BaseSpecification<CourseEntity>
             }
             if (!string.IsNullOrEmpty(courseDto.Code))
             {
-                AddCriteria(x => x.Code == courseDto.Code);
+                AddCriteria(x => x.Code.Contains(courseDto.Code));
             }
             if (courseDto.Hours > 0)
             {
