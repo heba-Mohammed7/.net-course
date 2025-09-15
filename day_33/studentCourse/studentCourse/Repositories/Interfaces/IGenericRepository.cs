@@ -12,5 +12,9 @@
 
         public void Delete(TEntity entity);
         public Task DeleteAsync(TEntity entity);
+        Task<IQueryable<TEntity>> GetQueryableAsync(BaseSpecification<TEntity> specification);
+        Task<bool> ExistsAsync(int studentId, int courseId);
+        Task AddAsync(TEntity entity);
+        Task RemoveAsync(TEntity entity);
     }
 }

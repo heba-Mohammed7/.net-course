@@ -6,11 +6,15 @@ namespace studentCourse.Specifications;
 
 public class CourseSpecification : BaseSpecification<CourseEntity>
 {
-    public CourseSpecification(CourseResponseDto courseDto = null) 
+    public CourseSpecification(CourseResponseDto? courseDto = null) 
         : base()
     {
         if (courseDto != null)
         {
+            if (courseDto.Id > 0)
+            {
+                AddCriteria(x => x.Id == courseDto.Id);
+            }
             if (!string.IsNullOrEmpty(courseDto.Cname))
             {
                 AddCriteria(x => x.Cname.Contains(courseDto.Cname));

@@ -2,28 +2,28 @@ namespace studentCourse.Controllers;
 
 public class StudentController : BaseController
     {
-        [HttpGet(Router.StudentRouter.Main)]
-        public async Task<IActionResult> All([FromQuery] string? name, [FromQuery] int? age)
+        [HttpGet(Router.StudentRouter.GetAll)]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllStudentsDto studentdto)
         {
-            var result = await mediator.Send(new GetAllStudentsDto { Name = name, Age = age });
+            var result = await mediator.Send(studentdto);
             return Result(result);
         }
 
-        [HttpGet(Router.StudentRouter.MainId)]
+        [HttpGet(Router.StudentRouter.GetById)]
         public async Task<IActionResult> GetById(int id)
         {
             var result = await mediator.Send(new GetStudentById { Id = id });
             return Result(result);
         }
 
-        [HttpPost(Router.StudentRouter.Main)]
+        [HttpPost(Router.StudentRouter.Add)]
         public async Task<IActionResult> Create(StudentDto studentDto)
         {
             var result = await mediator.Send(studentDto);
             return Result(result);
         }
 
-        [HttpPut(Router.StudentRouter.MainId)]
+        [HttpPut(Router.StudentRouter.Update)]
         public async Task<IActionResult> Update(int id, StudentDto studentDto)
         {
             var updateStudentDto = new UpdateStudentDto
@@ -36,21 +36,21 @@ public class StudentController : BaseController
             return Result(result);
         }
 
-        [HttpDelete(Router.StudentRouter.MainId)]
+        [HttpDelete(Router.StudentRouter.Delete)]
         public async Task<IActionResult> Delete(int id)
         {
             var result = await mediator.Send(new DeleteStudentDto { Id = id });
             return Result(result);
         }
 
-        [HttpPost(Router.StudentRouter.MainId + "/enroll/{courseId}")]
+        [HttpPost(Router.StudentRouter.enroll + "/enroll/{courseId}")]
         public async Task<IActionResult> Enroll(int id, int courseId)
         {
             var result = await mediator.Send(new EnrollDto { StudentId = id, CourseId = courseId });
             return Result(result);
         }
 
-        [HttpDelete(Router.StudentRouter.MainId + "/disenroll/{courseId}")]
+        [HttpDelete(Router.StudentRouter.enroll + "/disenroll/{courseId}")]
         public async Task<IActionResult> Disenroll(int id, int courseId)
         {
             var result = await mediator.Send(new DisenrollDto { StudentId = id, CourseId = courseId });

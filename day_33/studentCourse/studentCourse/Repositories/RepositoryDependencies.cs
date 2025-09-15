@@ -10,9 +10,7 @@ public static class RepositoryDependencies
         services.AddAutoMapper(_ => { }, Assembly.GetExecutingAssembly());
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-        services.AddScoped<IStudentRepository, StudentRepository>();
-        services.AddScoped<ICourseRepository, CourseRepository>();
-        services.AddScoped<ILearnRepository, LearnRepository>();
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         return services;
     }
 }

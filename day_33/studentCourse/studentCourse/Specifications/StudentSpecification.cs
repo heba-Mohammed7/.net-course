@@ -6,10 +6,14 @@ namespace studentCourse.Specifications;
 
 public class StudentSpecification : BaseSpecification<StudentEntity>
 {
-    public StudentSpecification(StudentResponseDto studentDto = null)
+    public StudentSpecification(StudentResponseDto? studentDto = null)
     {
         if (studentDto != null)
         {
+            if (studentDto.Id > 0)
+            {
+                AddCriteria(x => x.Id == studentDto.Id);
+            }
             if (!string.IsNullOrEmpty(studentDto.Name))
             {
                 AddCriteria(x => x.Name.Contains(studentDto.Name));

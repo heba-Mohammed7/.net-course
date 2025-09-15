@@ -6,8 +6,11 @@ namespace studentCourse.AppMetaData.BaseRouter
         public class CourseRouter : Router
         {
             private const string Prefix = Rule + "Course";
-            public const string Main = Prefix + "/";
-            public const string MainId = Prefix + "/{id}";
+            public const string Add = Prefix + "/";
+            public const string Delete = Prefix + "/{id}";
+            public const string Update = Prefix + "/{id}";
+            public const string GetAll = Prefix + "/";
+            public const string GetById = Prefix + "/{id}";
         }
     }
 }
