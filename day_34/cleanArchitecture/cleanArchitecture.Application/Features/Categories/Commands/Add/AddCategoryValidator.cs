@@ -1,0 +1,14 @@
+using FluentValidation;
+using cleanArchitecture.Domain.Models.Categories;
+
+namespace cleanArchitecture.Application.Features.Categories.Commands.Add;
+
+public class AddCategoryValidator : AbstractValidator<AddCategoryCommand>
+{
+    public AddCategoryValidator()
+    {
+        RuleFor(c => c.Name)
+            .NotEmpty().WithMessage("Category name is required.")
+            .MaximumLength(CategoryConstants.CategoryNameMaxLengthValue).WithMessage(CategoryConstants.CategoryNameMaxLengthMessage);
+    }
+}
